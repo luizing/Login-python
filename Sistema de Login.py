@@ -1,5 +1,6 @@
     #Sistema de Login
 import funcoes
+import os
 
 correto = 0
 
@@ -10,6 +11,7 @@ while correto == 0:
     print("1 - Fazer Login")
     print("2 - Cadastrar-se")
     print("3 - Verificar lista de usuários")
+    print("4 - Limpar console")
     print("=+=" *20)
     opcao = int(input("-> "))
     print("=+=" *20)
@@ -24,12 +26,5 @@ while correto == 0:
     if opcao == 3 :
         funcoes.Lista()
 
-"""if opcao != 1 and opcao != 2 and opcao != 3:
-    print("Digite 1, 2 ou 3")
-    print("=+=" *20)
-    print("Digite a opção desejada:")
-    print("1 - Fazer Login")
-    print("2 - Cadastrar-se")
-    print("3 - Verificar lista de usuários")
-    print("=+=" *20)
-    opcao = input("-> ")"""
+    if opcao == 4:
+        os.system('cls||clear')
