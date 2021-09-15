@@ -10,19 +10,30 @@ def init():
         senha = input("Senha: ")
 
         with open('usuarios.txt','r') as arquivo:
-            for itens in arquivo:
+            linhas = arquivo.readlines()
+            with open('usuarios.txt', 'w') as arquivo:
+                for linha in linhas:
+                    elementos = linha.split(',')
+                    if elementos[0] == usuario and elementos[1] == senha:
+                        nova_Senha = input('Digite sua nova senha: ')
+                        elementos[1] = nova_Senha
+                        for elemento in elementos:
+                            linha = elementos[0] + ',' + elementos[1] + "," + "\n"
+                    linha = elementos[0] + ',' + elementos[1] + "," + "\n"
+                    arquivo.write(linha)
+
+
+
+
+"""for itens in arquivo:
                 y = itens.split(',')
                 if usuario == y[0] and senha == y[1]:
-
-                    with open('usuarios.txt','r') as arquivo:
-                        for itens in arquivo:
-                             y = itens.split(',')
-                             if usuario == y[0]:
-                                y[1] = input("Digite sua nova senha: ")
-                                print(y[1])
-                                break
-
-
-
-
+                    print("a")
+                    for linhas in arquivo:
+                        y = itens.split(',')
+                        if usuario == y[0]:
+                            nova_Senha = input("Digite sua nova senha: ")
+                            with open('usuarios.txt','a') as arquivo:
+                                arquivo.write(usuario + "," + nova_Senha + "," + '\n')
+                                break"""
       

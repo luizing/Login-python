@@ -1,4 +1,6 @@
     #Sistema de Login
+
+from tkinter import *
 import funcoes
 import os
 
@@ -28,3 +30,12 @@ while correto == 0:
 
     if opcao == 4:
         os.system('cls||clear')
+
+
+#interface:
+"""
+janela = Tk()
+janela.title("Login")
+
+janela.mainloop()
+"""
