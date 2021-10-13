@@ -36,11 +36,11 @@ def Cadastro():
                 arquivo.write(usuario + "," + senha + "," + '\n')
             janela.destroy()
 
-    cad=Tk()
+    janela=Tk()
     janela.title("Cadastro")
 
-    titulo = Label(janela, text="Cadastro")
-    titulo.grid(column= 0, row = 0)
+    """titulo = Label(janela, text="Cadastro")
+    titulo.grid(column= 0, row = 0)"""
 
     usuarioL = Label(janela, text="Usuário:")
     usuarioL.grid(column = 0, row = 1)
@@ -55,9 +55,13 @@ def Cadastro():
     passE.grid(column = 1, row = 2)
 
     button = Button(janela, text = "Cadastrar", command = cadastro)
-    button.grid(column =2 , row = 2)
+    button.grid(column =1 , row = 3)
+    button.config(width=10)
 
-    cad.mainloop()
+    
+    janela.geometry("210x70")
+
+    janela.mainloop()
 
 def Lista():
     lista = ''
@@ -65,19 +69,24 @@ def Lista():
         for itens in arquivo:
             y = itens.split(',')
             if y[0] == '':
-                lista = ''
+                lista = lista + ''
             else:
                 lista = lista + y[0] +"\n"
-
+    if lista == "":
+        lista == "Não há usuários cadastrados."
 
     #Interface
-    users=Tk()
-    users.title("Lista de usuários")
+    janela=Tk()
+    janela.title("Lista de usuários")
+
+    title = Label(janela, text= "Lista de Usuários:")
+    title.pack(side=TOP)
+    title.config(font=("Courier", 20))
 
     lista = Label(janela, text= lista)
-    lista.grid(column = 0, row=1)
+    lista.pack(side=BOTTOM)
 
-    users.mainloop()
+    janela.mainloop()
 
 def Login():
 
@@ -95,11 +104,11 @@ def Login():
                     print("incorreto")
 
 
-    login=Tk()
-    login.title("Login")
+    janela=Tk()
+    janela.title("Login")
 
-    titulo = Label(janela, text="Fazer Login")
-    titulo.grid(column= 0, row = 0)
+    """titulo = Label(janela, text="Fazer Login")
+    titulo.grid(column= 0, row = 0)"""
 
     usuarioL = Label(janela, text="Usuário:")
     usuarioL.grid(column = 0, row = 1)
@@ -114,9 +123,12 @@ def Login():
     passE.grid(column = 1, row = 2)
 
     button = Button(janela, text = "Logar", command = logar)
-    button.grid(column =2 , row = 2)
+    button.grid(column =1 , row = 3)
+    button.config(width=10)
 
-    login.mainloop()
+    janela.geometry("210x70")
+
+    janela.mainloop()
 
 def console():
     janela.destroy
@@ -151,17 +163,21 @@ janela.title("Opções")
 
 titulo = Label(janela, text="Início")
 titulo.grid(column = 0, row= 0)
+titulo.config(font=("Courier", 44))
 
-opLogin = Button(janela, text="Fazer Login", command=Login)
+
+opLogin = Button(janela, text="Fazer Login", command=Login, width=15)
 opLogin.grid(column = 0, row = 1)
 
-opCadastro = Button(janela, text="Cadastrar-se", command=Cadastro)
+opCadastro = Button(janela, text="Cadastrar-se", command=Cadastro, width=15)
 opCadastro.grid(column = 0, row = 2)
 
-opLista = Button(janela, text="Lista de Usuários", command=Lista)
+opLista = Button(janela, text="Lista de Usuários", command=Lista, width=15)
 opLista.grid(column = 0, row = 3)
 
-opConsole = Button(janela, text="Console", command= console)
+opConsole = Button(janela, text="Console", command= console , fg="red", width=15)
 opConsole.grid(column = 0, row = 4)
+
+janela.geometry("220x190")
 
 janela.mainloop()
