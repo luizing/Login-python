@@ -2,8 +2,65 @@ import os
 from tkinter import *
 import funcoes
 
+
+
+
+
+
+def alterarSenha():
+
+    def okNovaSenha():
+        global nova_Senha
+        nova_Senha = novaSenha.get()
+        novaSenha.destroy()
+
+    with open('usuarios.txt','r') as arquivo:
+            linhas = arquivo.readlines()
+            with open('usuarios.txt', 'w') as arquivo:
+                for linha in linhas:
+                    elementos = linha.split(',')
+                    if elementos[0] == usuario and elementos[1] == senha:
+
+                        #interface
+                        novaSenha = Tk()        
+                        
+                        titulo = Label(novaSenha, text= "Digite sua nova senha:")
+                        titulo.grid(column=0, row=0)
+                        
+                        nova__Senha = Entry(novaSenha)
+                        nova__Senha.grid(column=0, row = 1)
+
+                        Ok = Button(novaSenha, text="Ok",command = okNovaSenha)
+                        Ok.grid(column= 2 , row = 2)
+                        novaSenha.mainloop()
+
+
+                        #fim da interface
+                        global nova_Senha
+                        elementos[1] = nova_Senha
+                        for elemento in elementos:
+                            linha = elementos[0] + ',' + elementos[1] + "," + "\n"
+                    linha = elementos[0] + ',' + elementos[1] + "," + "\n"
+                    arquivo.write(linha)
+
+def Apagar():
+    print("a")
+
 def aprov():
-    a = Tk()
+    Inicio = Tk()
+
+    titulo = Label(Inicio, text="Bem Vindo!")
+    titulo.grid(column = 1, row= 0)
+    titulo.config(font=("Courier", 44))
+
+    altSenha = Button(Inicio, text="Alterar Senha", command = alterarSenha)
+    altSenha.grid(column= 0 , row= 1)
+
+    apagar = Button(Inicio, text= "Apagar Usuario",command= Apagar)
+    apagar.grid(column= 2, row = 1)
+
+
+    Inicio.mainloop()
 
 def Cadastro():
 
@@ -91,17 +148,28 @@ def Lista():
 def Login():
 
     def logar():
+        global usuario
+        global senha
         usuario = usuarioE.get()
         senha = passE.get()
 
         with open('usuarios.txt','r') as arquivo:
+            correto = 0
             for itens in arquivo:
                 y = itens.split(',')
                 if usuario == y[0] and senha == y[1]:
-                    correto = 1
+                    correto =+ 1
                     aprov()
-                else:
-                    print("incorreto")
+                
+            if correto == 0:
+                jaExiste = Tk()
+                jaExiste.title("Erro")
+                texto = Label(jaExiste, text="Usuário ou Senha incorretos")
+                texto.pack(side = TOP)
+                botao = Button(jaExiste, text = "OK", command = jaExiste.destroy)
+                botao.pack(side = BOTTOM)
+
+                jaExiste.mainloop()
 
 
     janela=Tk()

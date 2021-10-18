@@ -1,11 +1,5 @@
 def init():
 
-
-
-
-
-
-
     #Codigo
     print('Bem Vindo!')
     print('Selecione uma opção:')
