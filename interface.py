@@ -11,7 +11,7 @@ def alterarSenha():
 
     def okNovaSenha():
         global nova_Senha
-        nova_Senha = novaSenha.get()
+        nova_Senha = nova__Senha.get()
         novaSenha.destroy()
 
     with open('usuarios.txt','r') as arquivo:
@@ -44,7 +44,28 @@ def alterarSenha():
                     arquivo.write(linha)
 
 def Apagar():
-    print("a")
+    with open('usuarios.txt', 'r') as arquivo:
+        linhas = arquivo.readlines()
+        with open('usuarios.txt', 'w') as arquivo:
+            for linha in linhas:
+                elementos = linha.split(',')
+                if elementos[0] == usuario and elementos[1] == senha:
+                        linha =''
+                        arquivo.write(linha)
+                else:
+                    linha = elementos[0] + ',' + elementos[1] + "," + "\n"
+                    arquivo.write(linha)
+    
+    Aviso = Tk()   
+
+    titulo = Label(Aviso, text= "Usuário Apagado!")
+    titulo.pack(side=TOP)
+
+    Ok = Button(Aviso, text="Ok",command = titulo.destroy)
+    Ok.pack(side=BOTTOM)
+
+    Aviso.mainloop()
+    
 
 def aprov():
     Inicio = Tk()
